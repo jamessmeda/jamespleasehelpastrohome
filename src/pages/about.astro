@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
+
+import { Image } from 'astro:assets';
+import localMentorImage from '../images/mentor.jpg';
 ---
 
 <BaseLayout title="About | James Smeda" description="About James Smeda Lorem Ipsum">
@@ -24,9 +27,19 @@ import Hero from '../components/Hero.astro';
 				<h2 class="section-title">Background</h2>
 				<div class="content">
 					<p>
-						Somewhere between starting out as a Turbo Pascal programmer to administering system for 30 year I am content with helping people.
+						Somewhere between starting out as a Turbo Pascal programmer to administering systems for 30 year I am content with helping people.
 						This seems to be my WHY in life. I have been a part of the IT industry for over 30 years and have seen the industry change and grow.
 					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Mentoring</h2>
+				<div class="content">
+					<p>
+						I would never have been able to get to where I am today without the help of others. I have been fortunate to have had some great mentors in my life.
+						Now I am in a position to give back and help others. I have been mentoring people for over 10 years and have seen some great success stories.
+					</p>
+					<Image src={localMentorImage} alt="James helping and teaching at work."/>
 				</div>
 			</section>
 		</main>
