@@ -4,6 +4,11 @@ import { getCollection } from 'astro:content';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+// Feedback Images
+import {Image} from "astro:assets";
+import  feedbackImage1  from '../images/feedback/2024-03-13_13-55-03.png';
+import  feedbackImage2  from '../images/feedback/2024-03-13_13-56-01.png';
+
 // Component Imports
 import CallToAction from '../components/CallToAction.astro';
 import Grid from '../components/Grid.astro';
@@ -99,6 +104,27 @@ const projects = (await getCollection('work'))
 						}
 					</Grid>
 				</div>
+
+
+
+
+
+			</section>
+			<section>
+				<div class="gallery">
+					<Grid variant="large">
+						{
+							[				<Image src={feedbackImage1}
+													width="1600"
+													height="900" alt="Feedback from work"/>, <Image src={feedbackImage2} alt="Feedback from work2"/>].map((feedback) => (
+								<li class="mention-card">
+									<p>{feedback}</p>
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+
 			</section>
 		</main>
 
