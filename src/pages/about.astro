@@ -6,6 +6,7 @@ import Hero from '../components/Hero.astro';
 
 import { Image } from 'astro:assets';
 import localMentorImage from '../images/mentor.jpg';
+import localLectureImage from '../images/mentor.jpg';
 ---
 
 <BaseLayout title="About | James Smeda" description="About James Smeda Lorem Ipsum">
@@ -40,6 +41,16 @@ import localMentorImage from '../images/mentor.jpg';
 						Now I am in a position to give back and help others. I have been mentoring people for over 10 years and have seen some great success stories.
 					</p>
 					<Image src={localMentorImage} alt="James helping and teaching at work."/>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">System Administration</h2>
+				<div class="content">
+					<p>
+						I'm in the process of writing "So you think you can admin this cat?"
+						
+					</p>
+					<Image src={localLectureImage} alt="James lecuring."/>
 				</div>
 			</section>
 		</main>
