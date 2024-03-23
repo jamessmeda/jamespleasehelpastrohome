@@ -7,6 +7,7 @@ import Hero from '../components/Hero.astro';
 import { Image } from 'astro:assets';
 import localMentorImage from '../images/mentor.jpg';
 import localLectureImage from '../images/systemadmin.jpg';
+import localMusicImage from '../images/a.jpg';
 ---
 
 <BaseLayout title="About | James Smeda" description="About James Smeda Lorem Ipsum">
@@ -52,6 +53,19 @@ import localLectureImage from '../images/systemadmin.jpg';
 						
 					</p>
 					<Image src={localLectureImage} alt="James lecuring."/>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Music</h2>
+				<div class="content">
+					<p>
+						I come from a musical family where we sing and enjoy music.
+						Please visit my music page to see what I have been up to.
+
+
+					</p>
+					<p>Read more <a href="https://jamessmeda.bandcamp.com">https://jamessmeda.bandcamp.com</a></p>
+					<Image src={localMusicImage} alt="James music."/>
 				</div>
 			</section>
 		</main>
