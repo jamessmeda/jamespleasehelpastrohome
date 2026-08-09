@@ -110,18 +110,15 @@ const projects = (await getCollection('work'))
 
 
 			</section>
-			<section>
+			<section aria-label="Feedback screenshots">
 				<div class="gallery">
 					<Grid>
-						{
-							[				<Image src={feedbackImage1}
-													width="1600"
-													height="900" alt="Feedback from work"/>, <Image src={feedbackImage2} alt="Feedback from work2"/>].map((feedback) => (
-								<li class="mention-card">
-									<p>{feedback}</p>
-								</li>
-							))
-						}
+						<li class="feedback-card">
+							<Image src={feedbackImage1} alt="Written feedback about James's work" />
+						</li>
+						<li class="feedback-card">
+							<Image src={feedbackImage2} alt="Additional written feedback about James's work" />
+						</li>
 					</Grid>
 				</div>
 
@@ -267,6 +264,20 @@ const projects = (await getCollection('work'))
 		color: var(--gray-300);
 		background: var(--gradient-subtle);
 		box-shadow: var(--shadow-sm);
+	}
+
+	.feedback-card {
+		overflow: hidden;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.feedback-card :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
 	}
 
 	@media (min-width: 50em) {

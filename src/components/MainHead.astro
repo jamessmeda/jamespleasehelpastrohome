@@ -7,13 +7,18 @@ interface Props {
 }
 
 const {
-	title = 'James : Personal Site',
-	description = 'The personal site of James',
+	title = 'James Smeda | Developer, speaker, writer and teacher',
+	description = 'The personal portfolio of James Smeda, a South Australian system administrator, developer, speaker, writer and teacher.',
 } = Astro.props;
 ---
 
 <meta charset="UTF-8" />
 <meta name="description" property="og:description" content={description} />
+<meta property="og:title" content={title} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta name="twitter:card" content="summary" />
+<link rel="canonical" href={Astro.url} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
