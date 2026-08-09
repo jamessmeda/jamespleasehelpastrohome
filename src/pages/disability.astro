@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout
+	title="My Disability | James Smeda"
+	description="James Smeda explains his experience of living with Laing distal myopathy."
+>
+	<div class="stack gap-20">
+		<main class="wrapper disability-page">
+			<Hero
+				title="My Disability"
+				tagline="I live with Laing distal myopathy, a rare condition that affects my muscles and movement."
+				align="start"
+			/>
+
+			<section aria-labelledby="what-this-means">
+				<h2 id="what-this-means">What this means for me</h2>
+				<div class="content stack gap-4">
+					<p>
+						I use a walker to help me move around safely. I move more slowly than many people,
+						so getting from one place to another can take me a little longer.
+					</p>
+					<p>
+						A little patience and extra time can make a real difference.
+					</p>
+				</div>
+			</section>
+
+			<section aria-labelledby="important-to-know">
+				<h2 id="important-to-know">Important to know</h2>
+				<div class="content stack gap-4">
+					<p>
+						My disability affects my muscles and movement. It does not affect how I think,
+						understand or communicate.
+					</p>
+					<p>
+						Please speak directly to me and treat me as you would anyone else. If you think I
+						might need assistance, asking first is always appreciated.
+					</p>
+				</div>
+			</section>
+
+			<section aria-labelledby="learn-more">
+				<h2 id="learn-more">Learn more</h2>
+				<div class="content">
+					<p>
+						Laing distal myopathy is also described as an MYH7-related skeletal myopathy.
+						You can read a medical overview from the
+						<a href="https://rarediseases.info.nih.gov/diseases/10769/myh7-related-skeletal-myopathy">
+							NIH Genetic and Rare Diseases Information Center
+						</a>.
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.disability-page {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+		max-width: 60rem;
+	}
+
+	section {
+		display: grid;
+		gap: 1rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--gray-800);
+		color: var(--gray-200);
+	}
+
+	h2 {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		max-width: 65ch;
+		font-size: var(--text-md);
+	}
+
+	.content a {
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.25em;
+	}
+
+	@media (min-width: 50em) {
+		section {
+			grid-template-columns: minmax(12rem, 1fr) 2fr;
+			gap: 3rem;
+		}
+
+		.content {
+			font-size: var(--text-lg);
+		}
+	}
+</style>
