@@ -1,0 +1,256 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const hobbyGroups = [
+	{
+		title: 'Wildlife & birdwatching',
+		description: 'I enjoy getting outside and capturing the birds and wildlife around South Australia.',
+		videos: [
+			{ id: 'R6GZvlZefG8', title: 'Name the birds game 1 of 2024' },
+			{ id: 'HY98w0736K4', title: 'Grooming Pelican of Kangaroo Island: A Serene Wildlife Moment' },
+			{ id: 'bdJPdTc0j6c', title: 'South Australian Possum' },
+			{ id: 'f7BIVjfNwCA', title: 'The Kookaburra' },
+		],
+	},
+	{
+		title: 'Woodworking & woodturning',
+		description: 'From useful objects to time-lapse projects, I like seeing what a piece of wood can become.',
+		videos: [
+			{ id: 'fM0zUfDtl3U', title: 'Woodturning a bottle opener' },
+			{ id: 'iQkBFKlg5aE', title: 'Making a plant pot on my lathe using scrap wood' },
+			{ id: 'MH9hZyNZM2k', title: 'Making a tealight candle holder using a lathe' },
+			{ id: 'Nn0rhW8omSY', title: 'Making a scroll saw wooden bowl' },
+		],
+	},
+	{
+		title: 'Fishing & growing',
+		description: 'A few of my outdoor experiments, from South Australian squid fishing to growing microgreens.',
+		videos: [
+			{ id: 'GAKdHYcF4RM', title: 'Catching squid in Kingscote, South Australia' },
+			{ id: '21b_WgJA2Ao', title: 'Squid fishing at Port Noarlunga South' },
+			{ id: '2-nOYCgP7iw', title: 'Microgreens without soil time lapse' },
+		],
+	},
+];
+---
+
+<BaseLayout
+	title="Hobbies | James Smeda"
+	description="Explore James Smeda's wildlife, woodworking, fishing and growing projects on YouTube."
+>
+	<main class="wrapper hobbies stack gap-15">
+		<Hero
+			title="Hobbies"
+			tagline="Things I enjoy making, observing and learning about — shared through videos from around South Australia."
+		/>
+
+		{
+			hobbyGroups.map((group) => (
+				<section class="hobby-group" aria-labelledby={group.title.toLowerCase().replaceAll(' ', '-').replace('&', 'and')}>
+					<div class="section-heading">
+						<h2 id={group.title.toLowerCase().replaceAll(' ', '-').replace('&', 'and')}>{group.title}</h2>
+						<p>{group.description}</p>
+					</div>
+					<div class="video-grid">
+						{group.videos.map((video) => (
+							<a
+								class="video-card"
+								href={`https://www.youtube.com/watch?v=${video.id}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={`${video.title} — watch on YouTube (opens in a new tab)`}
+							>
+								<div class="thumbnail">
+									<img
+										src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+										alt=""
+										width="480"
+										height="360"
+										loading="lazy"
+									/>
+									<span class="play" aria-hidden="true">▶</span>
+								</div>
+								<h3>{video.title}</h3>
+								<span class="watch">Watch on YouTube <span aria-hidden="true">↗</span></span>
+							</a>
+						))}
+					</div>
+				</section>
+			))
+		}
+
+		<div class="channel-callout">
+			<div>
+				<p class="eyebrow">More videos</p>
+				<h2>Visit my YouTube channel</h2>
+				<p>See all of my projects, wildlife encounters and new uploads in one place.</p>
+			</div>
+			<a href="https://www.youtube.com/@JamesSmeda" target="_blank" rel="noopener noreferrer">
+				Open James Smeda on YouTube <span aria-hidden="true">↗</span>
+			</a>
+		</div>
+	</main>
+</BaseLayout>
+
+<style>
+	.hobbies {
+		padding-bottom: 6rem;
+	}
+
+	.hobby-group {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.section-heading {
+		max-width: 44rem;
+	}
+
+	.section-heading h2 {
+		font-size: var(--text-2xl);
+		color: var(--gray-0);
+	}
+
+	.section-heading p {
+		margin-top: 0.6rem;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	.video-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+		gap: 1.25rem;
+	}
+
+	.video-card {
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.25rem;
+		background: color-mix(in srgb, var(--gray-999) 88%, var(--brand-sage));
+		box-shadow: var(--shadow-sm);
+		color: var(--gray-200);
+		text-decoration: none;
+		transition: transform var(--theme-transition), box-shadow var(--theme-transition), border-color var(--theme-transition);
+	}
+
+	.video-card:hover,
+	.video-card:focus-visible {
+		transform: translateY(-0.25rem);
+		border-color: var(--accent-regular);
+		box-shadow: var(--shadow-md);
+	}
+
+	.thumbnail {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		background: var(--brand-sage);
+	}
+
+	.thumbnail img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.play {
+		position: absolute;
+		inset: 50% auto auto 50%;
+		transform: translate(-50%, -50%);
+		display: grid;
+		place-items: center;
+		width: 3.25rem;
+		aspect-ratio: 1;
+		padding-left: 0.15rem;
+		border-radius: 50%;
+		background: color-mix(in srgb, var(--brand-clay) 92%, transparent);
+		color: var(--brand-ivory);
+		box-shadow: var(--shadow-md);
+	}
+
+	.video-card h3 {
+		padding: 1.1rem 1.1rem 0;
+		font-size: var(--text-md);
+		color: var(--gray-0);
+	}
+
+	.watch {
+		margin-top: auto;
+		padding: 0.8rem 1.1rem 1.15rem;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--accent-regular);
+	}
+
+	.channel-callout {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.5rem;
+		padding: clamp(1.5rem, 5vw, 3rem);
+		border-radius: 1.5rem;
+		background: var(--brand-teal);
+		color: var(--brand-ivory);
+	}
+
+	.channel-callout h2 {
+		font-size: var(--text-2xl);
+		color: var(--brand-ivory);
+	}
+
+	.channel-callout p:not(.eyebrow) {
+		margin-top: 0.5rem;
+		color: var(--brand-sage);
+	}
+
+	.eyebrow {
+		margin-bottom: 0.4rem;
+		font-size: var(--text-sm);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--brand-sage);
+	}
+
+	.channel-callout a {
+		display: inline-flex;
+		padding: 0.8rem 1rem;
+		border-radius: 999rem;
+		background: var(--brand-clay);
+		color: var(--brand-ivory);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.channel-callout a:hover,
+	.channel-callout a:focus-visible {
+		background: color-mix(in srgb, var(--brand-clay) 86%, white);
+	}
+
+	@media (min-width: 50em) {
+		.channel-callout {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.channel-callout a {
+			flex-shrink: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.video-card {
+			transition: none;
+		}
+
+		.video-card:hover,
+		.video-card:focus-visible {
+			transform: none;
+		}
+	}
+</style>
