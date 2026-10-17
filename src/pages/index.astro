@@ -1,6 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
-
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -10,21 +8,14 @@ import  feedbackImage1  from '../images/feedback/2024-03-13_13-55-03.png';
 import  feedbackImage2  from '../images/feedback/2024-03-13_13-56-01.png';
 
 // Component Imports
-import CallToAction from '../components/CallToAction.astro';
 import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
-
-// Content Fetching: List four most recent work projects
-const projects = (await getCollection('work'))
-	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 4);
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -59,29 +50,30 @@ const projects = (await getCollection('work'))
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
+			<section class="section with-background">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
+					<h3>What I do</h3>
+					<p>I use experience, patience and practical thinking to help people understand technology and solve problems.</p>
 				</header>
 
 				<div class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
+					<Grid variant="small">
+						<li class="overview-card">
+							<Icon icon="terminal-window" size="2rem" />
+							<h4>Technology</h4>
+							<p>I support systems, develop practical solutions and make technical ideas easier to understand.</p>
+						</li>
+						<li class="overview-card">
+							<Icon icon="chalkboard-teacher" size="2rem" />
+							<h4>Training</h4>
+							<p>I create and deliver approachable training that helps people learn at their own pace.</p>
+						</li>
+						<li class="overview-card">
+							<Icon icon="strategy" size="2rem" />
+							<h4>Mentoring</h4>
+							<p>I enjoy sharing experience, encouraging others and helping people grow in confidence.</p>
+						</li>
 					</Grid>
-				</div>
-
-				<div class="cta">
-					<CallToAction href="/work/">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
 				</div>
 			</section>
 
@@ -89,7 +81,7 @@ const projects = (await getCollection('work'))
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Feedback from friends and family</h3>
 					<p>
-						I have been fortunate enough to receive praise for my work in several ways. Mostly they think I'm ok.
+						I have been fortunate enough to receive kind words from people in my life. Mostly they think I'm ok.
 					</p>
 				</header>
 
@@ -114,10 +106,10 @@ const projects = (await getCollection('work'))
 				<div class="gallery">
 					<Grid>
 						<li class="feedback-card">
-							<Image src={feedbackImage1} alt="Written feedback about James's work" />
+							<Image src={feedbackImage1} alt="Written feedback about James" />
 						</li>
 						<li class="feedback-card">
-							<Image src={feedbackImage2} alt="Additional written feedback about James's work" />
+							<Image src={feedbackImage2} alt="Additional written feedback about James" />
 						</li>
 					</Grid>
 				</div>
@@ -264,6 +256,28 @@ const projects = (await getCollection('work'))
 		color: var(--gray-300);
 		background: var(--gradient-subtle);
 		box-shadow: var(--shadow-sm);
+	}
+
+	.overview-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		min-height: 14rem;
+		padding: 1.5rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.overview-card :global(svg) {
+		color: var(--accent-regular);
+	}
+
+	.overview-card h4 {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
 	}
 
 	.feedback-card {
